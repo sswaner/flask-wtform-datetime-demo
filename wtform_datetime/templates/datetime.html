@@ -1,0 +1,49 @@
+{% extends '_base.html' %}
+{% from "_formshelper.html" import render_field %}
+
+{% block title %}DateTime Form{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            {{ form.csrf_token }}
+
+            <!--
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker'>
+                    {{ form.datetime.label }}
+                    {{ render_field(form.datetime, class="form-control", placeholder="Date and Time") }}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            -->
+
+            <div class="form-group">
+                {{ form.datetime.label }}
+                <!-- <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+                    {{ render_field(form.datetime, class="form-control datetimepicker-input", placeholder="Date and Time" ,**{"data-toggle":"datetimepicker", "data-target":"#datetimepicker"}) }}
+                </div> -->
+                {{ render_field(form.datetime, id="datetimepicker", class="form-control datetimepicker-input", placeholder="Date and Time", autocomplete="off" ,**{"data-toggle":"datetimepicker", "data-target":"#datetimepicker"}) }}
+            </div>
+
+
+
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    $(function () {
+        $("#datetimepicker").datetimepicker({
+            format: 'YYYY/MM/DD hh:mm:ss A'
+        });
+    });
+</script>
+
+{% endblock %}
